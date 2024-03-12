@@ -1,5 +1,5 @@
-import { Navbar} from './ui/components/Navbar';
-import { SearchPage } from './podcasts/pages/SearchPage';
+import { Navbar } from './ui/components';
+import { SearchPage } from './podcasts/pages';
 
 
 

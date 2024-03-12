@@ -1,7 +1,21 @@
+$color-primary-brand: #000;
+$color-secondary-brand: #333;
+$color-third-brand: #1E6EB6;
+$color-fourth-brand: #FFF;
+
+$color-generic-line: #C1C1C1;
+$color-error: #C3002F;
+
 body,
 html {
   margin: 0;
   padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Para Firefox */
+  -webkit-box-sizing: border-box; /* Para WebKit/Blink */
 }
 
 body {
@@ -9,12 +23,11 @@ body {
   padding: 20px;
 }
 
-$color-primary-brand: #000;
-$color-secondary-brand: #333;
-$color-third-brand: #1E6EB6;
-
-$color-generic-line: #C1C1C1;
-$color-error: #C3002F;
+.container {
+  margin: 0 auto;
+  max-width: 1024px;
+  width: 100%;
+}
 
 .navbar {
   margin: 20px 0 0;
@@ -40,5 +53,71 @@ $color-error: #C3002F;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-bottom: 40px;
+  }
+
+  &__num-podcasts {
+    color: $color-fourth-brand;
+    font-size: 16px;
+    background-color: $color-third-brand;
+    border-radius: 4px;
+    margin-right: 15px;
+    padding: 5px 7px;
+  }
+
+  &__input {
+    font-size: 16px;
+    border: 1px solid $color-generic-line;
+    border-radius: 4px;
+    padding: 4px 10px;
+  }
+
+  &__list-filter {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+
+    @media (max-width: 960px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+
+  &__list-filter-item {
+    text-align: center;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+    padding: 15px;
+    height: 100%;
+  }
+
+  &__list-filter-image {
+    border-radius: 4px;
+    margin-bottom: 15px;
+    height: auto;
+    width: 100%;
+  }
+
+  &__list-filter-title {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0 0 15px;
+  }
+
+  &__list-filter-author {
+    color: #888;
+    font-size: 12px;
+    margin: 0;
   }
 }
