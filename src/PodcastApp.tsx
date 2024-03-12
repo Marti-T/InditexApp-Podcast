@@ -1,13 +1,15 @@
+import { Route, Routes } from 'react-router-dom';
 import { Navbar } from './ui/components';
-import { SearchPage } from './podcasts/pages';
+import { SearchPage, PodcastPage } from './podcasts/pages';
 
-
-
-export const PodcastApp = () => {
+export const PodcastApp: React.FC = () => {
   return (
     <>
       <Navbar />
-      <SearchPage />
+      <Routes>
+        <Route path="/" element={<SearchPage />} />
+        <Route path="/podcast/:id" element={<PodcastPage />} />
+      </Routes>
     </>
-  )
+  );
 }

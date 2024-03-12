@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import { getPodcasts } from '../../api/podcastApi';
 import { Podcast } from '../../types/types';
+import { PodcastCard } from '../components/PodcastCard';
 
 
 export const SearchPage = () => {
@@ -81,13 +83,7 @@ export const SearchPage = () => {
         <div className="container">
           <ul className="search__list-filter">
             {filteringPodcasts.map(( podcast ) => (
-              <li key={ podcast.id }>
-                <div className="search__list-filter-item">
-                  <img src={ podcast.image } alt={ podcast.name } className="search__list-filter-image" />
-                  <p className="search__list-filter-title">{ podcast.name }</p>
-                  <p className="search__list-filter-author">Author: { podcast.artist }</p>
-                </div>
-              </li>
+              <PodcastCard podcast={podcast} key={podcast.id} />
             ))}
           </ul>
         </div>

@@ -13,6 +13,7 @@ export const getPodcasts = async (): Promise<Podcast[]> => {
       name: entry['im:name'].label,
       artist: entry['im:artist'].label,
       image: entry['im:image'][2].label,
+      summary: entry['summary'].label,
     }));
 
   } catch (error) {
