@@ -1,0 +1,44 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto';
+  padding: 20px;
+}
+
+$color-primary-brand: #000;
+$color-secondary-brand: #333;
+$color-third-brand: #1E6EB6;
+
+$color-generic-line: #C1C1C1;
+$color-error: #C3002F;
+
+.navbar {
+  margin: 20px 0 0;
+
+  &__title {
+    color: $color-third-brand;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 0 0 10px;
+  }
+
+  &__line {
+    border-bottom: 1px solid $color-generic-line;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+}
+
+
+.search {
+
+  &__filter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
