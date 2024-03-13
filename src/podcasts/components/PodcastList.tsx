@@ -19,10 +19,6 @@ export const PodcastList: React.FC = () => {
       try {
         const podcastData = await fetchPodcastCollection(id as string);
 
-        console.log(podcastData)
-
-        console.log(podcastData)
-
         if (!podcastData.results || podcastData.results.length === 0) {
           throw new Error('No results');
         }
