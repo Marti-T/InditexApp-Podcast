@@ -1,0 +1,92 @@
+/* podcast-list */
+
+.podcast-list {
+
+  &__num-chapters {
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+    padding: 15px;
+    margin: 0 0 20px;
+  }
+
+  &__num-chapters-title {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  &__list {
+    display: table;
+    list-style: none;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+    padding: 15px;
+    width: 100%;
+  }
+
+  &__list-item {
+    display: table-row;
+
+    &--head {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: #F1F1F1;
+    }
+  }
+
+  &__head-title,
+  &__head-date,
+  &__head-time {
+    display: table-cell;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 5px;
+  }
+
+  &__head-date,
+  &__head-time {
+    text-align: center;
+  }
+
+  &__link {
+    color: $color-third-brand;
+    font-size: 14px;
+    text-decoration: none;
+    display: table-cell;
+    border-top: 1px solid $color-generic-line;
+    padding: 10px 20px 10px 5px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__list-date,
+  &__list-time {
+    display: table-cell;
+    font-size: 14px;
+    text-align: center;
+    border-top: 1px solid $color-generic-line;
+    padding: 10px 0;
+  }
+
+  &__list-time {
+    padding-right: 5px;
+  }
+
+  &__head-date,
+  &__list-date {
+    padding-right: 20px;
+  }
+
+  &__head-title {
+    padding-left: 5px;
+  }
+
+
+}

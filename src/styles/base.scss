@@ -1,0 +1,25 @@
+/* base */
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box; /* Para Firefox */
+  -webkit-box-sizing: border-box; /* Para WebKit/Blink */
+}
+
+body {
+  color: $color-primary-brand;
+  font-family: 'Roboto';
+  padding: 20px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 100%;
+}
