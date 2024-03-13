@@ -1,29 +1,15 @@
+import axios from 'axios';
 
-
-export async function fetchPodcastData(id: string): Promise<void> {
+export async function fetchPodcastCollection(collectionId: string): Promise<any> {
   try {
-    const url = `https://itunes.apple.com/lookup?id=${id}&media=podcast&entity=podcastEpisode&limit=20`;
-    const allOriginsUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-    const response = await fetch(allOriginsUrl);
+    const response = await axios.get(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${collectionId}&media=podcast&entity=podcastEpisode&limit=20`)}`);
 
-    if (!response.ok) {
-      throw new Error('Fetch no response.');
+    if (response.status !== 200) {
+      console.log('Server not response.');
     }
 
-    const responseData = await response.json();
-    const data = JSON.parse(responseData.contents);
-
-    let podcastsListData: { [key: string]: any } = JSON.parse(localStorage.getItem('podcastsListData') || '{}');
-
-    podcastsListData[id] = data;
-
-    localStorage.setItem('podcastsListData', JSON.stringify(podcastsListData));
+    return JSON.parse(response.data.contents);
   } catch (error) {
-    console.error('Problem get fetch:', error);
+    console.log('Error fetching podcast collection: ', error);
   }
 }
-
-
-
-
-

@@ -7,3 +7,13 @@ export interface Podcast {
   artist: string;
   summary: string;
 }
+
+
+export interface PodcastDetail {
+  collectionId: string;
+  collectionName: string;
+  trackName?: string;
+  releaseDate: string;
+  trackId: number;
+  trackTimeMillis: number;
+}
