@@ -6,8 +6,8 @@ export function formatDurationTrack(trackTimeMillis: number): string {
   const hours = date.getUTCHours();
   const minutes = date.getUTCMinutes();
 
-  const formatHours = hours < 10 ? `0${hours}` : hours;
-  const formatMinuts = minutes < 10 ? `0${minutes}` : minutes;
+  const formatHours = hours < 10 ? `${hours}` : hours;
+  const formatMinuts = minutes < 10 ? `${minutes}` : minutes;
 
-  return `${formatHours}:${formatMinuts}`;
+  return `${formatHours} hr ${formatMinuts} min`;
 }

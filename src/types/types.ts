@@ -11,9 +11,11 @@ export interface Podcast {
 
 export interface PodcastDetail {
   collectionId: string;
-  collectionName: string;
+  collectionName?: string;
   trackName?: string;
   releaseDate: string;
   trackId: number;
-  trackTimeMillis: number;
+  trackTimeMillis?: number;
+  description?: string;
+  episodeUrl?: string;
 }

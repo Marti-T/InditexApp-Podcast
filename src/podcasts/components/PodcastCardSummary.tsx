@@ -1,4 +1,5 @@
-import React from 'react';
+import { FC } from 'react';
+
 import { Podcast } from '../../types/types';
 
 
@@ -6,7 +7,7 @@ interface PodcastCardProps {
   podcast: Podcast;
 }
 
-export const PodcastCardSummary: React.FC<PodcastCardProps> = ({ podcast }) => {
+export const PodcastCardSummary: FC<PodcastCardProps> = ({ podcast }) => {
   return (
     <div className="podcast-card-summary">
       <div className="podcast-card-summary__item">

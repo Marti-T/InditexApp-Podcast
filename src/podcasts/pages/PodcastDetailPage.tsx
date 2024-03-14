@@ -2,14 +2,13 @@ import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { Podcast } from '../../types/types';
-import { PodcastCardSummary, PodcastList } from '../components';
+import { PodcastCardDetail, PodcastCardSummary } from '../components';
 
 
-export const PodcastPage: FC = () => {
+export const PodcastDetailPage: FC = () => {
 
   const { podcastId } = useParams<{ podcastId: string }>();
   const [ podcast, setPodcast ] = useState<Podcast | null>(null);
-  const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
 
   useEffect(() => {
 
@@ -23,33 +22,30 @@ export const PodcastPage: FC = () => {
       if (findPodcastId) {
         setPodcast(findPodcastId);
       } else {
-        setErrorMessage('Podcast not in localStorage');
+        console.error('Podcast not in localStorage');
       }
 
     } else {
-      setErrorMessage('No podcasts in localStorage');
+      console.error('No podcasts localStorage');
     }
-
   }, [podcastId]);
 
   return (
     <div className="podcast-page">
       <div className="container">
         <div className="podcast-page__content">
-          { errorMessage && <p>{ errorMessage }</p> }
-          { !errorMessage && !podcast &&
-            <div className="loader">
-                <div className="loader__content">
-                    <div className="loader__spinner"></div>
-                </div>
-            </div>
-          }
-          { podcast && (
+          { podcast ? (
             <div className="podcast-page__card">
               <PodcastCardSummary podcast={ podcast } key={ podcast.id } />
             </div>
+          ) : (
+            <div className="loader">
+              <div className="loader__content">
+                <div className="loader__spinner"></div>
+              </div>
+            </div>
           )}
-          <PodcastList />
+          <PodcastCardDetail />
         </div>
       </div>
     </div>

@@ -1,0 +1,32 @@
+/* podcast-card-detail */
+
+
+.podcast-card-detail {
+
+  &__content {
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+    padding: 15px;
+  }
+
+  &__title {
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 0 0 15px;
+  }
+
+  &__description {
+    color: $color-secondary-brand;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0 0 25px;
+  }
+
+  &__audio {
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 1px 4px;
+    width: 100%;
+  }
+
+}

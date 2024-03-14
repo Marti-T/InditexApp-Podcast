@@ -1,4 +1,5 @@
-import React from 'react';
+import { FC } from 'react';
+
 import { Link } from 'react-router-dom';
 import { Podcast } from '../../types/types';
 
@@ -7,7 +8,7 @@ interface PodcastCardProps {
   podcast: Podcast;
 }
 
-export const PodcastCard: React.FC<PodcastCardProps> = ({ podcast }) => {
+export const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
   return (
     <div className="podcast-card">
       <Link to={`/podcast/${ podcast.id }`} key={ podcast.id }>
