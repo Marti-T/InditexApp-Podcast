@@ -6,35 +6,23 @@ import { Podcast } from '../../types/types';
 
 interface PodcastCardProps {
   podcast: Podcast;
-  podcastId: string;
 }
 
-export const PodcastCardSummary: FC<PodcastCardProps> = ({ podcast, podcastId }) => {
+export const PodcastCardSummary: FC<PodcastCardProps> = ({ podcast }) => {
   return (
     <div className="podcast-card-summary">
       <div className="podcast-card-summary__item">
-        { podcastId ? (
-          <Link to={`/podcast/${podcastId}`}>
-            <img
-              src={ podcast.image }
-              alt={ podcast.name }
-              className="podcast-card-summary__image"
-            />
-          </Link>
-        ) : (
+        <Link to={`/podcast/${podcast.id}`}>
           <img
             src={ podcast.image }
             alt={ podcast.name }
             className="podcast-card-summary__image"
           />
-        )}
+        </Link>
         <div className="podcast-card-summary__title">
           <b>{ podcast.name }</b>
           <br />
-          <i>by</i>  { podcastId ? ( <Link to={`/podcast/${ podcastId }`} className="podcast-card-summary__link">{ podcast.artist }</Link>
-          ) : (
-              <div className="podcast-card-summary__link podcast-card-summary__link--no-link">{ podcast.artist }</div>
-          )}
+          <i>by</i>  <Link to={`/podcast/${ podcast.id }`} className="podcast-card-summary__link">{ podcast.artist }</Link>
         </div>
         <p className="podcast-card-summary__title-description">Description:</p>
         <p className="podcast-card-summary__summary">{ podcast.summary }</p>

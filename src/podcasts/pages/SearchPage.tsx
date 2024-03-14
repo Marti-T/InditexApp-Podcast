@@ -10,6 +10,7 @@ export const SearchPage: FC = () => {
   const [ searchText, setSearchText ] = useState<string>('');
   const [ filteringPodcasts, setFilteringPodcasts ] = useState<Podcast[]>([]);
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
+  const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
 
   useEffect(() => {
     const localStorageData = localStorage.getItem('localStoragePodcastsData');
@@ -53,7 +54,7 @@ export const SearchPage: FC = () => {
       localStorage.setItem('localStoragePodcastsTime', new Date().getTime().toString());
 
     } catch (error) {
-      console.error('Error fetching', error);
+      setErrorMessage(`Error fetching ${error}`);
     } finally {
       setIsLoading(false);
     }
@@ -80,6 +81,16 @@ export const SearchPage: FC = () => {
       </div>
       <div className="search__results">
         <div className="container">
+
+          {
+            errorMessage &&
+            <div className="error-message">
+              <div className="error-message__content">
+                { errorMessage }
+              </div>
+            </div>
+          }
+
           {isLoading ? (
             <div className="loader">
               <div className="loader__content">

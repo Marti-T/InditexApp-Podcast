@@ -36,7 +36,16 @@ export const PodcastPage: FC = () => {
     <div className="podcast-page">
       <div className="container">
         <div className="podcast-page__content">
-          { errorMessage && <p>{ errorMessage }</p> }
+
+          {
+            errorMessage &&
+            <div className="error-message">
+                <div className="error-message__content">
+                  { errorMessage }
+                </div>
+            </div>
+          }
+
           { !errorMessage && !podcast &&
             <div className="loader">
                 <div className="loader__content">
