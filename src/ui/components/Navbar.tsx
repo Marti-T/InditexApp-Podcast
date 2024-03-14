@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import { Link } from "react-router-dom";
 
 export const Navbar: FC = () => {
   return (
     <div className="navbar">
-      <h1 className="navbar__title">Podcaster</h1>
+      <Link to={'/'} className="navbar__title">Podcaster</Link>
       <div className="navbar__line"></div>
     </div>
   );

@@ -36,7 +36,7 @@ export const PodcastDetailPage: FC = () => {
         <div className="podcast-page__content">
           { podcast ? (
             <div className="podcast-page__card">
-              <PodcastCardSummary podcast={ podcast } key={ podcast.id } />
+              <PodcastCardSummary podcast={ podcast } podcastId={ podcast.id } key={ podcast.id } />
             </div>
           ) : (
             <div className="loader">

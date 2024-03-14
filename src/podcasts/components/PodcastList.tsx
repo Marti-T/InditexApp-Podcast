@@ -22,8 +22,6 @@ export const PodcastList: FC = () => {
         const podcastData = await fetchPodcastCollection(podcastId as string);
         podcastData.results = podcastData.results.slice(1);
 
-        console.log("podcastData: ", podcastData);
-
         if (!podcastData.results || podcastData.results.length === 0) {
           throw new Error('No results');
         }

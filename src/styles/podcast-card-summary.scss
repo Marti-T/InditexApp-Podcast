@@ -20,6 +20,24 @@
     padding: 15px 0 15px;
   }
 
+  &__link {
+    color: $color-primary-brand;
+    text-decoration: none;
+    font-style: italic;
+    display: inline-block;
+    margin-right: 5px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &--no-link {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
   &__title-description {
     font-size: 14px;
     font-weight: 700;

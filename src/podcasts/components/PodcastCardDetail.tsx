@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { htmlConverterReact } from 'html-converter-react';
 
 import { PodcastDetail } from '../../types/types';
 
@@ -16,6 +17,7 @@ export const PodcastCardDetail: FC = () => {
         setIsLoading(true);
 
         const localStorageCollectionsList = localStorage.getItem('localStorageCollectionsList');
+
         if (localStorageCollectionsList) {
           const podcastChapter: PodcastDetail[] = JSON.parse(localStorageCollectionsList);
           const findChapterId = podcastChapter.find(chapter => chapter.trackId == chapterId as any);
@@ -40,6 +42,7 @@ export const PodcastCardDetail: FC = () => {
     fetchData();
   }, [chapterId]);
 
+
   return (
     <div className="podcast-card-detail">
       <div className="podcast-card-detail__content">
@@ -57,10 +60,14 @@ export const PodcastCardDetail: FC = () => {
           </div>
         ) : (
           <>
-            <h2 className="podcast-card-detail__title">{chapter?.trackName}</h2>
-            <p className="podcast-card-detail__description">{chapter?.description}</p>
+            <h2 className="podcast-card-detail__title">
+              { chapter?.trackName }
+            </h2>
+            <div className="podcast-card-detail__description">
+              { htmlConverterReact((chapter?.description as string).replace(/\n/g, '<br />')) }
+            </div>
             <audio controls className="podcast-card-detail__audio">
-              <source src={chapter?.episodeUrl} type="audio/mpeg" />
+              <source src={ chapter?.episodeUrl } type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
           </>
