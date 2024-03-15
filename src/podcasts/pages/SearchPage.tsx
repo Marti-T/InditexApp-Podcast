@@ -1,38 +1,14 @@
 import { FC, ChangeEvent, useEffect, useState } from 'react';
 
-import { getPodcasts } from '../../api';
 import { Podcast } from '../../types/types';
 import { PodcastCard } from '../components';
+import { useFetchPodcasts } from '../hooks/useFetchPodcats.ts';
 
 export const SearchPage: FC = () => {
 
-  const [ podcasts, setPodcasts ] = useState<Podcast[]>([]);
   const [ searchText, setSearchText ] = useState<string>('');
   const [ filteringPodcasts, setFilteringPodcasts ] = useState<Podcast[]>([]);
-  const [ isLoading, setIsLoading ] = useState<boolean>(false);
-  const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
-
-  useEffect(() => {
-    const localStorageData = localStorage.getItem('localStoragePodcastsData');
-    const localStorageHours = localStorage.getItem('localStoragePodcastsTime');
-
-    if (localStorageHours && localStorageData) {
-      const initHours = parseInt(localStorageHours);
-      const currentHours = new Date().getTime();
-      const diff = currentHours - initHours;
-      const hoursDiff = diff / (1000 * 60 * 60);
-
-      if (hoursDiff >= 24) {
-        localStorage.removeItem('localStoragePodcastsData');
-        localStorage.removeItem('localStoragePodcastsTime');
-      } else {
-        setPodcasts(JSON.parse(localStorageData));
-        return;
-      }
-    }
-
-    getStorePodcasts();
-  }, []);
+  const { podcasts, isLoading, errorMessage} = useFetchPodcasts();
 
   useEffect(() => {
     const filtering = podcasts.filter((podcast) =>
@@ -40,25 +16,6 @@ export const SearchPage: FC = () => {
     );
     setFilteringPodcasts(filtering);
   }, [podcasts, searchText]);
-
-  const getStorePodcasts = async () => {
-
-    try {
-
-      setIsLoading(true);
-
-      const listPodcasts = await getPodcasts();
-
-      setPodcasts(listPodcasts);
-      localStorage.setItem('localStoragePodcastsData', JSON.stringify(listPodcasts));
-      localStorage.setItem('localStoragePodcastsTime', new Date().getTime().toString());
-
-    } catch (error) {
-      setErrorMessage(`Error fetching ${error}`);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
@@ -98,11 +55,15 @@ export const SearchPage: FC = () => {
               </div>
             </div>
           ) : (
-            <ul className="search__list-filter">
-              {filteringPodcasts.map((podcast) => (
-                <PodcastCard podcast={podcast} key={podcast.id} />
-              ))}
-            </ul>
+            filteringPodcasts.length === 0 ? (
+              <p>No encontrado nada</p>
+            ) : (
+              <ul className="search__list-filter">¡
+                {filteringPodcasts.map((podcast) => (
+                  <PodcastCard podcast={ podcast } key={ podcast.id } />
+                ))}
+              </ul>
+            )
          )}
         </div>
       </div>

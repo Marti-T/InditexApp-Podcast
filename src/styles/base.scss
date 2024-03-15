@@ -26,20 +26,6 @@ body {
 
 
 .loader {
-  background-color: rgba(255, 255, 255, 0.8);
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 9999;
-
-  &__content {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
 
   &__spinner {
     border-radius: 50%;

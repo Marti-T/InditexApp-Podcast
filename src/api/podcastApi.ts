@@ -1,14 +1,18 @@
 import axios from 'axios';
 import { Podcast } from './../types/types';
 
+interface IApiPodcastResponse {
+  status: string,
+  data: Podcast[] | any,
+}
 
-export const getPodcasts = async (): Promise<Podcast[]> => {
+export const getPodcasts = async (): Promise<IApiPodcastResponse> => {
   try {
     const response = await axios.get(
-      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
+      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/js'
     );
 
-    return response.data.feed.entry.map((entry: any) => ({
+    const data = response.data.feed.entry.map((entry: any) => ({
       id: entry.id.attributes['im:id'],
       name: entry['im:name'].label,
       artist: entry['im:artist'].label,
@@ -16,9 +20,16 @@ export const getPodcasts = async (): Promise<Podcast[]> => {
       summary: entry['summary'].label,
     }));
 
-  } catch (error) {
+    return {
+      status: 'success',
+      data
+    };
 
-    console.error('Error getting podcasts:', error);
-    throw error;
+  } catch (error: any) {
+    console.log('Error getting podcasts:', error.message);
+    return {
+      status: 'fail',
+      data: error.message
+    };
   }
 };

@@ -9,37 +9,30 @@ export const PodcastCardDetail: FC = () => {
   const { chapterId } = useParams<{ chapterId: string }>();
   const [ chapter, setPodcastChapter ] = useState<PodcastDetail | null>(null);
   const [ isLoading, setIsLoading ] = useState<boolean>(true);
-  const [ error, setError ] = useState<string>('');
+  const [ errorMessage, setErrorMessage ] = useState<string>('');
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
 
-        const localStorageCollectionsList = localStorage.getItem('localStorageCollectionsList');
+    setIsLoading(true);
 
-        if (localStorageCollectionsList) {
-          const podcastChapter: PodcastDetail[] = JSON.parse(localStorageCollectionsList);
-          const findChapterId = podcastChapter.find(chapter => chapter.trackId == chapterId as any);
+    const localStorageCollectionsList = localStorage.getItem('localStorageCollectionsList');
 
-          if (findChapterId) {
-            setPodcastChapter(findChapterId);
-          } else {
-            setError(`The chapter ${chapter?.trackName} has not been found`);
-          }
-        } else {
-          setError(`The chapter ${chapter?.trackName} has not been found`);
-        }
-      } catch (error) {
+    if (localStorageCollectionsList) {
+      const podcastChapter: PodcastDetail[] = JSON.parse(localStorageCollectionsList);
+      const findChapterId = podcastChapter.find(chapter => chapter.trackId == chapterId as any);
 
-        setError('Error get data');
-
-      } finally {
+      if (findChapterId) {
+        setPodcastChapter(findChapterId);
+        setIsLoading(false);
+      } else {
+        setErrorMessage(`The chapter ${ chapter?.trackName } has not been found`);
         setIsLoading(false);
       }
-    };
+    } else {
+      setErrorMessage(`The chapter ${ chapter?.trackName } has not been found`);
+      setIsLoading(false);
+    }
 
-    fetchData();
   }, [chapterId]);
 
 
@@ -52,10 +45,10 @@ export const PodcastCardDetail: FC = () => {
               <div className="loader__spinner"></div>
             </div>
           </div>
-        ) : error ? (
+        ) : errorMessage ? (
           <div className="error-message">
             <div className="error-message__content">
-              {error}
+              { errorMessage }
             </div>
           </div>
         ) : (
@@ -64,7 +57,7 @@ export const PodcastCardDetail: FC = () => {
               { chapter?.trackName }
             </h2>
             <div className="podcast-card-detail__description">
-              { htmlConverterReact((chapter?.description as string).replace(/\n/g, '<br />')) }
+              { htmlConverterReact(( chapter?.description as string ).replace(/\n/g, '<br />')) }
             </div>
             <audio controls className="podcast-card-detail__audio">
               <source src={ chapter?.episodeUrl } type="audio/mpeg" />
