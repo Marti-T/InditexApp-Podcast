@@ -56,9 +56,13 @@ export const SearchPage: FC = () => {
             </div>
           ) : (
             filteringPodcasts.length === 0 ? (
-              <p>No encontrado nada</p>
+              <div className="error-message">
+                <div className="error-message__content">
+                  No podcast found
+                </div>
+              </div>
             ) : (
-              <ul className="search__list-filter">¡
+              <ul className="search__list-filter">
                 {filteringPodcasts.map((podcast) => (
                   <PodcastCard podcast={ podcast } key={ podcast.id } />
                 ))}

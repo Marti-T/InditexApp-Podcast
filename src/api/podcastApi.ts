@@ -9,7 +9,7 @@ interface IApiPodcastResponse {
 export const getPodcasts = async (): Promise<IApiPodcastResponse> => {
   try {
     const response = await axios.get(
-      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/js'
+      'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json'
     );
 
     const data = response.data.feed.entry.map((entry: any) => ({
