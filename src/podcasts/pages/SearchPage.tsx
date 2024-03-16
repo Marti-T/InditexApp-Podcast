@@ -2,7 +2,7 @@ import { FC, ChangeEvent, useEffect, useState } from 'react';
 
 import { Podcast } from '../../types/types';
 import { PodcastCard } from '../components';
-import { useFetchPodcasts } from '../hooks/useFetchPodcats.ts';
+import { useFetchPodcasts } from '../hooks/useFetchPodcats';
 
 export const SearchPage: FC = () => {
 
@@ -48,7 +48,7 @@ export const SearchPage: FC = () => {
             </div>
           }
 
-          {isLoading ? (
+          { isLoading ? (
             <div className="loader">
               <div className="loader__content">
                 <div className="loader__spinner"></div>

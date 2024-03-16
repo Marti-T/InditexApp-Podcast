@@ -19,3 +19,4 @@ export interface PodcastDetail {
   description?: string;
   episodeUrl?: string;
 }
+

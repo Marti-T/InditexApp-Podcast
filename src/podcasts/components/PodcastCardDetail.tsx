@@ -23,15 +23,14 @@ export const PodcastCardDetail: FC = () => {
 
       if (findChapterId) {
         setPodcastChapter(findChapterId);
-        setIsLoading(false);
       } else {
         setErrorMessage(`The chapter ${ chapter?.trackName } has not been found`);
-        setIsLoading(false);
       }
     } else {
       setErrorMessage(`The chapter ${ chapter?.trackName } has not been found`);
-      setIsLoading(false);
     }
+
+    setIsLoading(false);
 
   }, [chapterId]);
 

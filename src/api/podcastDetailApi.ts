@@ -1,17 +1,29 @@
 import axios from 'axios';
+import { Podcast } from '../types/types';
 
-export async function fetchPodcastCollection(collectionId: string): Promise<any> {
+interface IApiPodcastCollection {
+  status: string,
+  data: Podcast[] | any,
+}
+
+export async function getPodcastCollection(collectionId: string): Promise<IApiPodcastCollection> {
   try {
     const response = await axios.get(
       `https://api.allorigins.win/get?url=${encodeURIComponent(`https://itunes.apple.com/lookup?id=${collectionId}&media=podcast&entity=podcastEpisode&limit=20`)}`
     );
 
-    if (response.status !== 200) {
-      console.log('Server not response.');
-    }
+    const data = JSON.parse(response.data.contents);
 
-    return JSON.parse(response.data.contents);
-  } catch (error) {
-    console.log('Error fetching podcast collection: ', error);
+    return {
+      status: 'success',
+      data
+    };
+
+  } catch (error: any) {
+    console.log('Error getting collections:', error.message);
+    return {
+      status: 'fail',
+      data: error.message
+    };
   }
-}
+};
