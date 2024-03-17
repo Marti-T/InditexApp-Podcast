@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { htmlConverterReact } from 'html-converter-react';
 
 import { PodcastDetail } from '../../types/types';
 
@@ -56,7 +55,7 @@ export const PodcastCardDetail: FC = () => {
               { chapter?.trackName }
             </h2>
             <div className="podcast-card-detail__description">
-              { chapter?.description && htmlConverterReact(chapter.description.replace(/\n/g, '<br />')) }
+              { chapter?.description }
             </div>
             <audio controls className="podcast-card-detail__audio">
               <source src={ chapter?.episodeUrl } type="audio/mpeg" />

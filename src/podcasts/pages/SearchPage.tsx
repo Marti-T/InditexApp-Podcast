@@ -25,7 +25,7 @@ export const SearchPage: FC = () => {
     <div className="search">
       <div className="search__filter">
         <div className="search__num-podcasts">{filteringPodcasts.length}</div>
-        <form className="search__form">
+        <form className="search__form" data-testid="search-form">
           <input
             type="text"
             placeholder="Filter podcasts ..."

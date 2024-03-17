@@ -3,7 +3,7 @@ import { SearchPage } from '../../../src/podcasts/pages/SearchPage';
 
 
 describe('SearchPage testing', () => {
-  it('The search form must be displayed correctly', () => {
+  test('The search form must be displayed correctly', () => {
     const { getByPlaceholderText, getByTestId } = render(<SearchPage />);
     const input = getByPlaceholderText('Filter podcasts ...') as HTMLInputElement;
     const form = getByTestId('search-form');
@@ -13,7 +13,7 @@ describe('SearchPage testing', () => {
     expect(input.getAttribute('name')).toEqual('searchText');
   });
 
-  it('Check whether the searchText state is updated', () => {
+  test('Check whether the searchText state is updated', () => {
     const { getByPlaceholderText } = render(<SearchPage />);
     const input = getByPlaceholderText('Filter podcasts ...') as HTMLInputElement;
 
@@ -22,7 +22,7 @@ describe('SearchPage testing', () => {
     expect(input.value).toBe('test');
   });
 
-  it('Check status when change input value', () => {
+  test('Check status when change input value', () => {
     const { getByPlaceholderText } = render(<SearchPage />);
     const input = getByPlaceholderText('Filter podcasts ...') as HTMLInputElement;
 
