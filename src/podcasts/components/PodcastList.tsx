@@ -3,8 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 
 
 import { formatDate, formatDurationTrack } from '../helpers';
-import { useFetchCollections } from '../hooks/useFetchCollections';
-
+import { useFetchCollections } from '../hooks';
 
 
 export const PodcastList: FC = () => {
@@ -12,7 +11,7 @@ export const PodcastList: FC = () => {
     const { podcastId } = useParams<{ podcastId: string }>();
     const [ collectionCounts, setCollectionCounts ] = useState<{ [key: string]: number }>({});
 
-    const { collections, isLoading, errorMessage } = useFetchCollections();
+    const { collections, isLoadingCollections, errorMessage } = useFetchCollections();
 
     useEffect(() => {
       const collectionCount = collections.length;
@@ -24,7 +23,7 @@ export const PodcastList: FC = () => {
         <div className="podcast-list__num-chapters">
           <h2 className="podcast-list__num-chapters-title">Episodes { collectionCounts[podcastId as string ]}</h2>
         </div>
-        { isLoading ? (
+        { isLoadingCollections ? (
           <div className="loader">
             <div className="loader__content">
               <div className="loader__spinner"></div>

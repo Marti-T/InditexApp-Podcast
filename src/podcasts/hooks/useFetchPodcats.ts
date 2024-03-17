@@ -6,12 +6,14 @@ import { getPodcasts } from "../../api";
 export const useFetchPodcasts = () => {
 
   const [ podcasts, setPodcasts ] = useState<Podcast[]>([]);
-  const [ isLoading, setIsLoading ] = useState<boolean>(false);
+  const [ isLoadingPodcasts, setIsLoadingPodcasts ] = useState<boolean>(false);
   const [ errorMessage, setErrorMessage ] = useState<string | null>(null);
+
+  //console.log("isLoadingPodcasts: ", isLoadingPodcasts);
 
   const getStorePodcasts = useCallback(async () => {
 
-    setIsLoading(true);
+    setIsLoadingPodcasts(true);
 
     const { data, status } = await getPodcasts();
 
@@ -23,7 +25,7 @@ export const useFetchPodcasts = () => {
       setErrorMessage(data);
     }
 
-    setIsLoading(false);
+    setIsLoadingPodcasts(false);
 
   }, []);
 
@@ -52,5 +54,5 @@ export const useFetchPodcasts = () => {
 
   }, [getStorePodcasts]);
 
-  return { podcasts, isLoading, errorMessage };
+  return { podcasts, isLoadingPodcasts, errorMessage };
 }

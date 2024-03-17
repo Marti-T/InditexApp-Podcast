@@ -9,6 +9,7 @@ export const PodcastDetailPage: FC = () => {
 
   const { podcastId } = useParams<{ podcastId: string }>();
   const [ podcast, setPodcast ] = useState<Podcast | null>(null);
+  const [ errorMessage, setErrorMessage ] = useState<string>('');
 
   useEffect(() => {
 
@@ -22,11 +23,11 @@ export const PodcastDetailPage: FC = () => {
       if (findPodcastId) {
         setPodcast(findPodcastId);
       } else {
-        console.error('Podcast not in localStorage');
+        setErrorMessage(`Podcast Summary not in found`);
       }
 
     } else {
-      console.error('No podcasts localStorage');
+      setErrorMessage(`No podcasts localStorage`);
     }
   }, [podcastId]);
 
@@ -34,7 +35,13 @@ export const PodcastDetailPage: FC = () => {
     <div className="podcast-page">
       <div className="container">
         <div className="podcast-page__content">
-          { podcast ? (
+          { errorMessage ? (
+            <div className="error-message">
+              <div className="error-message__content">
+                { errorMessage }
+              </div>
+            </div>
+          ) : podcast ? (
             <div className="podcast-page__card">
               <PodcastCardSummary podcast={ podcast } key={ podcast.id } />
             </div>

@@ -8,12 +8,9 @@ export const PodcastCardDetail: FC = () => {
 
   const { chapterId } = useParams<{ chapterId: string }>();
   const [ chapter, setPodcastChapter ] = useState<PodcastDetail | null>(null);
-  const [ isLoading, setIsLoading ] = useState<boolean>(true);
   const [ errorMessage, setErrorMessage ] = useState<string>('');
 
   useEffect(() => {
-
-    setIsLoading(true);
 
     const localStorageCollectionsList = localStorage.getItem('localStorageCollectionsList');
 
@@ -30,21 +27,13 @@ export const PodcastCardDetail: FC = () => {
       setErrorMessage(`The chapter ${ chapter?.trackName } has not been found`);
     }
 
-    setIsLoading(false);
-
   }, [chapterId]);
 
 
   return (
     <div className="podcast-card-detail">
       <div className="podcast-card-detail__content">
-        {isLoading ? (
-          <div className="loader">
-            <div className="loader__content">
-              <div className="loader__spinner"></div>
-            </div>
-          </div>
-        ) : errorMessage ? (
+        { errorMessage ? (
           <div className="error-message">
             <div className="error-message__content">
               { errorMessage }
@@ -56,7 +45,7 @@ export const PodcastCardDetail: FC = () => {
               { chapter?.trackName }
             </h2>
             <div className="podcast-card-detail__description">
-              { htmlConverterReact(( chapter?.description as string ).replace(/\n/g, '<br />')) }
+              { chapter?.description && htmlConverterReact(chapter.description.replace(/\n/g, '<br />')) }
             </div>
             <audio controls className="podcast-card-detail__audio">
               <source src={ chapter?.episodeUrl } type="audio/mpeg" />

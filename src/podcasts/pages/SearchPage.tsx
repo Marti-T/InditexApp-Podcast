@@ -2,13 +2,13 @@ import { FC, ChangeEvent, useEffect, useState } from 'react';
 
 import { Podcast } from '../../types/types';
 import { PodcastCard } from '../components';
-import { useFetchPodcasts } from '../hooks/useFetchPodcats';
+import { useFetchPodcasts } from '../hooks';
 
 export const SearchPage: FC = () => {
 
   const [ searchText, setSearchText ] = useState<string>('');
   const [ filteringPodcasts, setFilteringPodcasts ] = useState<Podcast[]>([]);
-  const { podcasts, isLoading, errorMessage} = useFetchPodcasts();
+  const { podcasts, errorMessage} = useFetchPodcasts();
 
   useEffect(() => {
     const filtering = podcasts.filter((podcast) =>
@@ -48,13 +48,7 @@ export const SearchPage: FC = () => {
             </div>
           }
 
-          { isLoading ? (
-            <div className="loader">
-              <div className="loader__content">
-                <div className="loader__spinner"></div>
-              </div>
-            </div>
-          ) : (
+          {
             filteringPodcasts.length === 0 ? (
               <div className="error-message">
                 <div className="error-message__content">
@@ -68,7 +62,7 @@ export const SearchPage: FC = () => {
                 ))}
               </ul>
             )
-         )}
+          }
         </div>
       </div>
     </div>

@@ -3,6 +3,12 @@
 .navbar {
   margin: 20px 0 0;
 
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__title {
     color: $color-third-brand;
     font-size: 22px;
