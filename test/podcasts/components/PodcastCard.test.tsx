@@ -12,7 +12,7 @@ const mockPodcast = {
 };
 
 describe('Pruebas en <PodcastsCard />', () => {
-  test('Debe mostrar correctamente el componente PodcastCard', () => {
+  test('Must correctly display the PodcastCard component', () => {
 
     const { getByLabelText } = render(
       <Router>

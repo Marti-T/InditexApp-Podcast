@@ -15,12 +15,20 @@ export const PodcastCard: FC<PodcastCardProps> = ({ podcast }) => {
         <li>
           <div className="podcast-card__item">
             <img
-              src={ podcast.image }
-              alt={ podcast.name }
+              src={podcast.image}
+              alt={podcast.name}
               className="podcast-card__image"
+              aria-label="image-card"
             />
-            <p className="podcast-card__title">{ podcast.name }</p>
-            <p className="podcast-card__author">Author: { podcast.artist }</p>
+            <p className="podcast-card__title" aria-label="name-card">
+              {podcast.name}
+            </p>
+            <p
+              className="podcast-card__author"
+              aria-label="author-card"
+            >
+              Author: {podcast.artist}
+            </p>
           </div>
         </li>
       </Link>

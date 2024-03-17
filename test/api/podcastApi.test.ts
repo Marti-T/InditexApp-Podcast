@@ -3,8 +3,8 @@ import { getPodcasts } from '../../src/api';
 
 jest.mock('axios');
 
-describe('Pruebas en podcastApi', () => {
-  test('Debe retornar los podcasts correctamente', async () => {
+describe('Testing on podcastApi', () => {
+  test('Must return podcasts correctly', async () => {
     const mockData = {
       data: {
         feed: {
@@ -51,7 +51,7 @@ describe('Pruebas en podcastApi', () => {
     ]);
   });
 
-  test('Debe de controlar los errores del servicio correctamente', async () => {
+  test('It must control service errors correctly', async () => {
     const errorMessage = 'Error fetching data';
     (axios.get as jest.Mock).mockRejectedValueOnce(new Error(errorMessage));
 
