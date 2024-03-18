@@ -55,7 +55,6 @@ export const PodcastCardDetail: FC = () => {
               { chapter?.trackName }
             </h2>
             <div className="podcast-card-detail__description">
-              {/*{ chapter?.description }*/}
               <div dangerouslySetInnerHTML={{ __html: chapter?.description || '' }} />
             </div>
             <audio controls className="podcast-card-detail__audio">
