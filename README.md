@@ -17,6 +17,10 @@ yarn dev
 
 ## Production
 Before compiling, change the environment url in the .env.production file.
+Once the "dist" folder is created, change the following urls:
+- href="/podcast-svgrepo-com.svg" to href="./podcast-svgrepo-com.svg"
+- src="/assets/index-C3EGJaLH.js" to src="./assets/index-C3EGJaLH.js"
+- href="/assets/index-DkTbIXIc.css" by href="./assets/index-DkTbIXIc.css"
 ```bash
 yarn build
 ```
