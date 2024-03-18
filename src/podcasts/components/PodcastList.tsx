@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import { formatDate, formatDurationTrack } from '../helpers';
 import { useFetchCollections } from '../hooks';
 
+const baseUrl = import.meta.env.VITE_API_URL;
 
 export const PodcastList: FC = () => {
 
@@ -44,7 +45,7 @@ export const PodcastList: FC = () => {
             </li>
             { collections.map((podcast, index) => (
               <li className="podcast-list__list-item" key={ index }>
-                <Link to={`/podcast/${podcastId}/chapter/${podcast.trackId}`} className="podcast-list__link">
+                <Link to={`${baseUrl}/podcast/${podcastId}/chapter/${podcast.trackId}`} className="podcast-list__link">
                   { podcast.trackName }
                 </Link>
                 <div className="podcast-list__list-date">{ formatDate(podcast.releaseDate) }</div>

@@ -1,17 +1,26 @@
 # React + TypeScript + Vite
 
-# Version Node
-20.10.0
+## Version Node
+v20.10.0
 
-# Init
+## Init
+```bash
 nvm use 20.10.0
 yarn install
+```
 
-# Dependencies
+## Dependencies
+Change environment url in .env.development file
+```bash
 yarn dev
+```
 
-# Production
+## Production
+Before compiling, change the environment url in the .env.production file.
+```bash
 yarn build
+```
 
 # Testing
+```bash
 yarn test
